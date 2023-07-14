@@ -13,7 +13,7 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USERNAME}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          scripts:
+          script: |
             cd /home/ubuntu/stop-watch-app
             sudo git pull origin main
             echo "Done"
