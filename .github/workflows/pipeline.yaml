@@ -1,20 +1,19 @@
----
-- name: CICD pipeline
-  on:
-    push:
-      branch:
-        - main
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
-      steps:
-        - name: deploy via ssh
-          uses: appleboy/ssh-action@master
-          with: 
-            host: ${{secrets.SSH_HOST}}
-            username: ${{secrets.SSH_USERNAME}}
-            key: ${{secrets.SSH_PRIVATE_KEY}}
-            scripts:
-              cd /home/ubuntu/stop-watch-app
-              sudo git pull origin main
-              echo "Done"
+name: CICD pipeline
+on:
+  push:
+    branches:
+    - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy via ssh
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USERNAME}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          scripts:
+            cd /home/ubuntu/stop-watch-app
+            sudo git pull origin main
+            echo "Done"
